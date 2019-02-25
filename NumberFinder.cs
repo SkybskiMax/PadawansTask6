@@ -52,7 +52,7 @@ namespace PadawansTask6
             }
             catch (System.OverflowException)
             {
-                throw new OverflowException();
+                return null;
             }
         }
         static void Swap<T>(ref T a, ref T b)
