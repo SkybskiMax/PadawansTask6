@@ -9,43 +9,47 @@ namespace PadawansTask6
         {
             if (number <= 0)
                 throw new ArgumentException();
-            List<int> digits = new List<int>();
-            for (; number != 0; number /= 10)
+            checked
             {
-                digits.Add(number % 10);
-            }
-            int[] arr = digits.ToArray();
-            Array.Reverse(arr);
-
-            int i;
-            for (i = arr.Length - 1; i > 0; i--)
-            {
-                if (arr[i] > arr[i - 1])
+                List<int> digits = new List<int>();
+                for (; number != 0; number /= 10)
                 {
-                    break;
+                    digits.Add(number % 10);
                 }
-            }
+                int[] arr = digits.ToArray();
+                Array.Reverse(arr);
 
-            if (i == 0)
-            {
-
-            }
-            else
-            {
-                int x = arr[i - 1], min = i;
-
-                for (int j = i + 1; j < arr.Length; j++)
+                int i;
+                for (i = arr.Length - 1; i > 0; i--)
                 {
-                    if (arr[j] > x && arr[j] < arr[min])
+                    if (arr[i] > arr[i - 1])
                     {
-                        min = j;
+                        break;
                     }
                 }
 
-                Swap(ref arr[i - 1], ref arr[min]);
-                Array.Sort(arr, i, arr.Length-i);
+                if (i == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    int x = arr[i - 1], min = i;
+
+                    for (int j = i + 1; j < arr.Length; j++)
+                    {
+                        if (arr[j] > x && arr[j] < arr[min])
+                        {
+                            min = j;
+                        }
+                    }
+
+                    Swap(ref arr[i - 1], ref arr[min]);
+                    Array.Sort(arr, i, arr.Length - i);
+                }
+
+                return Int32.Parse(string.Join("", arr));
             }
-            return Int32.Parse(string.Join("", arr));
         }
 
         static void Swap<T>(ref T a, ref T b)
