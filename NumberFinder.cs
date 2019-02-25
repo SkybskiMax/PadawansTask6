@@ -9,7 +9,7 @@ namespace PadawansTask6
         {
             if (number <= 0)
                 throw new ArgumentException();
-            checked
+            try
             {
                 List<int> digits = new List<int>();
                 for (; number != 0; number /= 10)
@@ -50,8 +50,11 @@ namespace PadawansTask6
 
                 return Int32.Parse(string.Join("", arr));
             }
+            catch (System.OverflowException)
+            {
+                throw new OverflowException();
+            }
         }
-
         static void Swap<T>(ref T a, ref T b)
         {
             T temp;
@@ -59,7 +62,6 @@ namespace PadawansTask6
             a = b;
             b = temp;
         }
-
     }
 }
 
