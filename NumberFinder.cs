@@ -7,6 +7,8 @@ namespace PadawansTask6
     {
         public static int? NextBiggerThan(int number)
         {
+            if (number <= 0)
+                throw new ArgumentException();
             List<int> digits = new List<int>();
             for (; number != 0; number /= 10)
             {
